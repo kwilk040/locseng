@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "locseng", "locseng\locseng.csproj", "{0AF5A40A-78AD-4212-9E5D-0D54974106A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "indexer", "indexer\indexer.csproj", "{1908F63C-6111-4FFF-9B6C-E78A6CD675BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndexerTests", "IndexerTests\IndexerTests.csproj", "{0EF80FEA-9037-4C7C-86DA-CDC0020C3EAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{0AF5A40A-78AD-4212-9E5D-0D54974106A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AF5A40A-78AD-4212-9E5D-0D54974106A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AF5A40A-78AD-4212-9E5D-0D54974106A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1908F63C-6111-4FFF-9B6C-E78A6CD675BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1908F63C-6111-4FFF-9B6C-E78A6CD675BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1908F63C-6111-4FFF-9B6C-E78A6CD675BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1908F63C-6111-4FFF-9B6C-E78A6CD675BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EF80FEA-9037-4C7C-86DA-CDC0020C3EAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EF80FEA-9037-4C7C-86DA-CDC0020C3EAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EF80FEA-9037-4C7C-86DA-CDC0020C3EAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EF80FEA-9037-4C7C-86DA-CDC0020C3EAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
