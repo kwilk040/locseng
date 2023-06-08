@@ -12,4 +12,9 @@
         </AssemblyAttribute>
     </ItemGroup>
     
+    <ItemGroup>
+      <PackageReference Include="Serilog" Version="3.0.0-dev-02022" />
+      <PackageReference Include="Serilog.Sinks.Console" Version="4.1.1-dev-00910" />
+    </ItemGroup>
+    
 </Project>
