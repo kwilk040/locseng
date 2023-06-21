@@ -4,7 +4,7 @@ internal class Index
 {
     private readonly Dictionary<string, Document> _documents = new();
     private readonly Dictionary<string, int> _documentFrequency = new();
-    
+
     internal List<KeyValuePair<string, double>> Search(string query)
     {
         var result = new Dictionary<string, double>();

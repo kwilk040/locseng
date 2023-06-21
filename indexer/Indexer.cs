@@ -1,6 +1,6 @@
 ﻿using Serilog;
 using Serilog.Core;
- 
+
 namespace indexer;
 
 public class Indexer
@@ -46,6 +46,7 @@ public class Indexer
 
     public List<KeyValuePair<string, double>> QueryIndex(string query)
     {
+        _logger.Information($"QUERY => {query}");
         return _index.Search(query);
     }
 }
