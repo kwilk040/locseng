@@ -11,8 +11,4 @@
       <ProjectReference Include="..\indexer\indexer.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <None Remove="cooltext437866543144387.gif" />
-    </ItemGroup>
-
 </Project>
