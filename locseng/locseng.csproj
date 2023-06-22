@@ -8,7 +8,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\indexer\indexer.csproj" />
+        <Content Include="images\locseng.gif">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\indexer\indexer.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
     </ItemGroup>
 
 </Project>

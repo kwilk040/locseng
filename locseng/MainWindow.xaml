@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
         Title="locseng" Height="600" Width="1000"
         MinWidth="1000"
@@ -14,13 +15,7 @@
             <RowDefinition Height="0.25*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0"
-                   Foreground="#e0def4"
-                   FontSize="30"
-                   TextAlignment="Center"
-                   VerticalAlignment="Center">
-            locseng
-        </TextBlock>
+        <Image gif:ImageBehavior.AnimatedSource="images/locseng.gif" VerticalAlignment="Center" />
         <TextBox Grid.Row="1" x:Name="QueryInput"
                  Background="#393552"
                  Foreground="#e0def4"
