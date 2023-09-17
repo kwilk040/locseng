@@ -1,10 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>WinExe</OutputType>
+        <OutputType>Exe</OutputType>
         <TargetFramework>net6.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
+        <RootNamespace>Locseng</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\indexer\indexer.csproj" />
+        <ProjectReference Include="..\Indexer\Indexer.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace indexer;
+﻿namespace Indexer;
 
 internal static class TfIdf
 {

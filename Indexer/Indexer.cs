@@ -2,7 +2,7 @@
 using Serilog;
 using Serilog.Core;
 
-namespace indexer;
+namespace Indexer;
 
 public class Indexer
 {

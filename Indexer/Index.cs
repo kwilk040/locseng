@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace indexer;
+namespace Indexer;
 
 internal class Index
 {

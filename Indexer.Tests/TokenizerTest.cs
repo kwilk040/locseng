@@ -1,6 +1,4 @@
-using indexer;
-
-namespace IndexerTests;
+namespace Indexer.Tests;
 
 public class TokenizerTest
 {

@@ -1,4 +1,4 @@
-﻿namespace locseng
+﻿namespace Locseng
 {
     public partial class App
     {

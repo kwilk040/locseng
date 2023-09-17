@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using static System.Char;
 
-namespace indexer;
+namespace Indexer;
 
 internal class Tokenizer : IEnumerable<string>
 {

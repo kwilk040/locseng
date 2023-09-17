@@ -1,4 +1,4 @@
-﻿<Window x:Name="Window" x:Class="locseng.MainWindow"
+﻿<Window x:Name="Window" x:Class="Locseng.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -21,7 +21,7 @@
                  Foreground="#e0def4"
                  TextWrapping="NoWrap"
                  VerticalScrollBarVisibility="Disabled"
-                 KeyDown="QueryInput_OnKeyDown" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"
+                 KeyUp="QueryInput_OnKeyUp" VerticalAlignment="Center" HorizontalAlignment="Center"
                  Width="496" FontSize="24" />
         <ListBox Grid.Row="2" x:Name="Result"
                  KeyUp="Result_OnKeyUp"

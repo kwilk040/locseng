@@ -1,21 +1,20 @@
 ﻿using System.Diagnostics;
 using System.Windows.Input;
-using indexer;
 
-namespace locseng
+namespace Locseng
 {
     public partial class MainWindow
     {
-        private readonly Indexer _indexer;
+        private readonly Indexer.Indexer _indexer;
 
         public MainWindow()
         {
             InitializeComponent();
-            _indexer = new Indexer();
+            _indexer = new Indexer.Indexer();
             _indexer.AddDirectory(@"C:\Users\Yves\Desktop\personal-wiki-master\src");
         }
 
-        private void QueryInput_OnKeyDown(object sender, KeyEventArgs e)
+        private void QueryInput_OnKeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key != Key.Return) return;
             Result.Items.Clear();
@@ -26,6 +25,8 @@ namespace locseng
             {
                 Result.Items.Add(keyValuePair.Key);
             }
+
+            Result.Focus();
         }
 
         private void Result_OnKeyUp(object sender, KeyEventArgs e)
@@ -39,7 +40,6 @@ namespace locseng
                 }
                 case Key.Q:
                     Result.Items.Clear();
-                    QueryInput.Focus();
                     break;
             }
         }
@@ -58,4 +58,4 @@ namespace locseng
             explorer.Start();
         }
     }
-} 
+}

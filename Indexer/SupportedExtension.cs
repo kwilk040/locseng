@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace indexer;
+namespace Indexer;
 
 public enum SupportedExtension
 {

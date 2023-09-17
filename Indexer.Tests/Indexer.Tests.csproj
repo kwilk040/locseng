@@ -6,6 +6,8 @@
         <Nullable>enable</Nullable>
 
         <IsPackable>false</IsPackable>
+
+        <RootNamespace>Indexer.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -22,7 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\indexer\indexer.csproj" />
+      <ProjectReference Include="..\Indexer\Indexer.csproj" />
     </ItemGroup>
 
 </Project>
