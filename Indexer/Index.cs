@@ -6,6 +6,7 @@ internal class Index
 {
     [JsonProperty] private readonly Dictionary<string, Document> _documents = new();
     [JsonProperty] private readonly Dictionary<string, int> _documentFrequency = new();
+    [JsonProperty] private readonly List<string> _dirs = new();
 
     internal List<KeyValuePair<string, double>> Search(string query)
     {
@@ -26,7 +27,7 @@ internal class Index
         return sorted.ToList();
     }
 
-    private void RemoveDocument(string filePath)
+    internal void RemoveDocument(string filePath)
     {
         if (!_documents.ContainsKey(filePath)) return;
         foreach (var tf in _documents[filePath].TermFrequency
@@ -81,5 +82,26 @@ internal class Index
         }
 
         _documents.Add(filePath, new Document(termFrequency, count, lastModified));
+    }
+
+    internal void AddDirectory(string dirPath)
+    {
+        if (!_dirs.Contains(dirPath))
+        {
+            _dirs.Add(dirPath);
+        }
+    }
+
+    internal void RemoveDirectory(string dirPath)
+    {
+        if (_dirs.Contains(dirPath))
+        {
+            _dirs.Remove(dirPath);
+        }
+    }
+
+    internal List<string> GetDirectories()
+    {
+        return _dirs;
     }
 }

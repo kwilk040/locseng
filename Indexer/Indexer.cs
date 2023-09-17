@@ -7,11 +7,17 @@ namespace Indexer;
 public class Indexer
 {
     private static readonly Logger Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
-    private Index _index;
+    private readonly Index _index;
 
     private Indexer(Index index)
     {
         _index = index;
+    }
+
+    public static Indexer Initialize()
+    {
+        var index = LoadIndexFromJson();
+        return new Indexer(index);
     }
 
     public void AddDirectory(string dirPath)
@@ -46,7 +52,34 @@ public class Indexer
             _index.AddDocument(file, lastWriteTime, content);
         }
 
-        Task.Run(SerializeIndexToJson);
+        _index.AddDirectory(dirPath);
+        SerializeIndexToJson();
+    }
+
+    public void RemoveDirectory(string dirPath)
+    {
+        if (!Directory.Exists(dirPath))
+        {
+            Logger.Error($"Directory {dirPath} does not exist.");
+            return;
+        }
+
+        Logger.Information($"Removing {dirPath} from index.");
+
+        var filesPaths = Directory
+            .EnumerateFiles(dirPath, "*", SearchOption.AllDirectories) //TODO: CATCH EXCEPTIONS
+            .Where(f => !f.StartsWith("."))
+            .Where(IsSupported)
+            .ToList();
+
+        foreach (var file in filesPaths.Where(File.Exists))
+        {
+            Logger.Information($"Removing => {file} from index");
+            _index.RemoveDocument(file);
+        }
+
+        _index.RemoveDirectory(dirPath);
+        SerializeIndexToJson();
     }
 
     public List<KeyValuePair<string, double>> QueryIndex(string query)
@@ -64,11 +97,6 @@ public class Indexer
         Logger.Information("Index saved");
     }
 
-    public static Indexer Initialize()
-    {
-        var index = LoadIndexFromJson();
-        return new Indexer(index);
-    }
 
     private static Index LoadIndexFromJson()
     {
