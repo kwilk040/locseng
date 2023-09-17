@@ -10,8 +10,7 @@ namespace Locseng
         public MainWindow()
         {
             InitializeComponent();
-            _indexer = new Indexer.Indexer();
-            _indexer.AddDirectory(@"C:\Users\Yves\Desktop\personal-wiki-master\src");
+            _indexer = Indexer.Indexer.Initialize();
         }
 
         private void QueryInput_OnKeyUp(object sender, KeyEventArgs e)
