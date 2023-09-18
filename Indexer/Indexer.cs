@@ -6,7 +6,8 @@ namespace Indexer;
 
 public class Indexer
 {
-    private static readonly Logger Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
+    private static readonly Logger Logger = new LoggerConfiguration().WriteTo.File("log.txt").CreateLogger();
+
     private readonly Index _index;
 
     private Indexer(Index index)
@@ -30,26 +31,23 @@ public class Indexer
 
         Logger.Information($"Adding {dirPath} to index.");
 
-        var filesPaths = Directory
-            .EnumerateFiles(dirPath, "*", SearchOption.AllDirectories) //TODO: CATCH EXCEPTIONS
-            .Where(f => !f.StartsWith("."))
-            .Where(IsSupported)
-            .ToList();
+        var filesPaths = GetPaths(dirPath);
 
         foreach (var file in filesPaths)
         {
-            if (!File.Exists(file)) continue;
+            if (!file.Exists) continue;
 
-            var lastWriteTime = File.GetLastWriteTime(file);
-            if (!_index.RequiresReindexing(file, lastWriteTime))
+            var path = file.FullName;
+            var lastWriteTime = file.LastWriteTime;
+            if (!_index.RequiresReindexing(path, lastWriteTime))
             {
                 Logger.Information($"File {file} does not require indexing.");
                 continue;
             }
 
-            var content = File.ReadAllText(file);
+            var content = File.ReadAllText(path);
             Logger.Information($"Indexing => {file}, Last Write Time => {lastWriteTime}.");
-            _index.AddDocument(file, lastWriteTime, content);
+            _index.AddDocument(path, lastWriteTime, content);
         }
 
         _index.AddDirectory(dirPath);
@@ -66,20 +64,23 @@ public class Indexer
 
         Logger.Information($"Removing {dirPath} from index.");
 
-        var filesPaths = Directory
-            .EnumerateFiles(dirPath, "*", SearchOption.AllDirectories) //TODO: CATCH EXCEPTIONS
-            .Where(f => !f.StartsWith("."))
-            .Where(IsSupported)
-            .ToList();
+        var filesPaths = GetPaths(dirPath);
 
-        foreach (var file in filesPaths.Where(File.Exists))
+        foreach (var file in filesPaths.Where(f => f.Exists))
         {
             Logger.Information($"Removing => {file} from index");
-            _index.RemoveDocument(file);
+            _index.RemoveDocument(file.FullName);
         }
 
         _index.RemoveDirectory(dirPath);
         SerializeIndexToJson();
+    }
+
+    private static IEnumerable<FileSystemInfo> GetPaths(string dirPath)
+    {
+        return SafeDirectory.EnumerateFiles(dirPath, "*")
+            .Where(IsSupported)
+            .ToList();
     }
 
     public List<KeyValuePair<string, double>> QueryIndex(string query)
@@ -116,17 +117,15 @@ public class Indexer
         return index;
     }
 
-    private bool IsSupported(string filename)
+    private static bool IsSupported(FileSystemInfo file)
     {
-        var extension = filename[filename.LastIndexOf(".", StringComparison.Ordinal)..];
+        var extension = file.Extension;
 
         if (Enum.GetValues<SupportedExtension>().ToList()
             .ConvertAll(ext => new string(ext.StringValue())).Contains(extension))
-        {
             return true;
-        }
 
-        Logger.Warning($"Can't index {filename}: Unsupported extension => {extension}");
+        Logger.Warning($"Can't index {file}: Unsupported extension => {extension}");
         return false;
     }
 }
