@@ -76,17 +76,22 @@ public class Indexer
         SerializeIndexToJson();
     }
 
+    public List<KeyValuePair<string, double>> QueryIndex(string query)
+    {
+        Logger.Information($"QUERY => {query}");
+        return _index.Search(query);
+    }
+
+    public List<string> GetDirectories()
+    {
+        return _index.GetDirectories();
+    }
+
     private static IEnumerable<FileSystemInfo> GetPaths(string dirPath)
     {
         return SafeDirectory.EnumerateFiles(dirPath, "*")
             .Where(IsSupported)
             .ToList();
-    }
-
-    public List<KeyValuePair<string, double>> QueryIndex(string query)
-    {
-        Logger.Information($"QUERY => {query}");
-        return _index.Search(query);
     }
 
     private void SerializeIndexToJson()

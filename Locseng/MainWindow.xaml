@@ -16,6 +16,21 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Image gif:ImageBehavior.AnimatedSource="images/locseng.gif" VerticalAlignment="Center" />
+        <Button Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" MinHeight="50"
+                Background="#2a273f" Foreground="#e0def4"
+                Click="AddDirectoryButton_OnClick" Margin="10,10,0,0">
+            Add Directory
+        </Button>
+        <Button Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" MinHeight="50"
+                Background="#2a273f" Foreground="#e0def4"
+                Click="RemoveDirectoryButton_OnClick" Margin="90,10,0,0">
+            Remove Directory
+        </Button>
+        <Button Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" MinHeight="50"
+                Background="#2a273f" Foreground="#e0def4"
+                Click="ListDirectoriesButton_OnClick" Margin="0,10,10,0">
+            List Directories
+        </Button>
         <TextBox Grid.Row="1" x:Name="QueryInput"
                  Background="#393552"
                  Foreground="#e0def4"
