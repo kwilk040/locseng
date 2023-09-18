@@ -4,6 +4,9 @@ using Serilog.Core;
 
 namespace Indexer;
 
+/// <summary>
+/// Indexes files using tf-idf https://en.wikipedia.org/wiki/Tf%E2%80%93idf
+/// </summary>
 public class Indexer
 {
     private static readonly Logger Logger = new LoggerConfiguration().WriteTo.File("log.txt").CreateLogger();
@@ -15,12 +18,20 @@ public class Indexer
         _index = index;
     }
 
+    /// <summary>
+    /// Initializes Indexer 
+    /// </summary>
+    /// <returns>Indexer instance</returns>
     public static Indexer Initialize()
     {
         var index = LoadIndexFromJson();
         return new Indexer(index);
     }
 
+    /// <summary>
+    /// Adds directory to the index
+    /// </summary>
+    /// <param name="dirPath">Path of the directory to add</param>
     public void AddDirectory(string dirPath)
     {
         if (!Directory.Exists(dirPath))
@@ -54,6 +65,10 @@ public class Indexer
         SerializeIndexToJson();
     }
 
+    /// <summary>
+    /// Removes directory from the index
+    /// </summary>
+    /// <param name="dirPath">Path of the directory to remove</param>
     public void RemoveDirectory(string dirPath)
     {
         if (!Directory.Exists(dirPath))
@@ -76,12 +91,21 @@ public class Indexer
         SerializeIndexToJson();
     }
 
+    /// <summary>
+    /// Searches index for a given query
+    /// </summary>
+    /// <param name="query">Query</param>
+    /// <returns>Paths and tf-idf rank related to them</returns>
     public List<KeyValuePair<string, double>> QueryIndex(string query)
     {
         Logger.Information($"QUERY => {query}");
         return _index.Search(query);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns>List of directories in the index</returns>
     public List<string> GetDirectories()
     {
         return _index.GetDirectories();
