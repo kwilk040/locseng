@@ -5,8 +5,8 @@ using Serilog.Core;
 namespace Indexer;
 
 /// <summary>
-///  Bezpieczny zamiennik Directory.EnumerateFiles.
-///  źródło: https://stackoverflow.com/questions/13130052/directoryinfo-enumeratefiles-causes-unauthorizedaccessexception-and-other
+///  Exception free Directory.EnumerateFiles replacement.
+/// <see keyword="Source" href="https://stackoverflow.com/questions/13130052/directoryinfo-enumeratefiles-causes-unauthorizedaccessexception-and-other"/>
 /// </summary>
 public class SafeDirectory : IEnumerable<FileSystemInfo>
 {
@@ -48,7 +48,6 @@ public class SafeDirectory : IEnumerable<FileSystemInfo>
         try
         {
             matches = _patterns.Aggregate(matches, (current, pattern) => current
-                .Concat(_root.EnumerateDirectories(pattern, SearchOption.TopDirectoryOnly))
                 .Concat(_root.EnumerateFiles(pattern, SearchOption.TopDirectoryOnly)));
         }
         catch (UnauthorizedAccessException)

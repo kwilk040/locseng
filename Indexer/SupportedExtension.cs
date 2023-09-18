@@ -6,6 +6,7 @@ public enum SupportedExtension
 {
     [StringValue(".txt")] Txt,
     [StringValue(".md")] Md,
+    [StringValue(".html")] Html,
 }
 
 [AttributeUsage((AttributeTargets.Field))]

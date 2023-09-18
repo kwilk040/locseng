@@ -45,7 +45,7 @@ public class Indexer
                 continue;
             }
 
-            var content = File.ReadAllText(path);
+            var content = Parser.GetContent(file);
             Logger.Information($"Indexing => {file}, Last Write Time => {lastWriteTime}.");
             _index.AddDocument(path, lastWriteTime, content);
         }
