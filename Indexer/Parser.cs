@@ -3,9 +3,9 @@ using NUglify;
 
 namespace Indexer;
 
-public static class Parser
+internal static class Parser
 {
-    public static string GetContent(FileSystemInfo file)
+    internal static string GetContent(FileSystemInfo file)
     {
         if (!Enum.TryParse(file.Extension.Replace(".", ""), true, out SupportedExtension extension))
             throw new ArgumentException($"Cannot parse {file.FullName}: Extension not supported {file.Extension}");

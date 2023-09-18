@@ -5,10 +5,10 @@ using Serilog.Core;
 namespace Indexer;
 
 /// <summary>
-///  Exception free Directory.EnumerateFiles replacement.
-/// <see keyword="Source" href="https://stackoverflow.com/questions/13130052/directoryinfo-enumeratefiles-causes-unauthorizedaccessexception-and-other"/>
+/// Exception free Directory.EnumerateFiles replacement.
+/// Source: "https://stackoverflow.com/questions/13130052/directoryinfo-enumeratefiles-causes-unauthorizedaccessexception-and-other"
 /// </summary>
-public class SafeDirectory : IEnumerable<FileSystemInfo>
+internal class SafeDirectory : IEnumerable<FileSystemInfo>
 {
     private static readonly Logger Logger = new LoggerConfiguration().WriteTo.File("log.txt").CreateLogger();
 
@@ -16,7 +16,7 @@ public class SafeDirectory : IEnumerable<FileSystemInfo>
     private readonly IList<string> _patterns;
     private readonly SearchOption _option;
 
-    public static IEnumerable<FileSystemInfo> EnumerateFiles(string root, string pattern,
+    internal static IEnumerable<FileSystemInfo> EnumerateFiles(string root, string pattern,
         SearchOption option = SearchOption.AllDirectories)
     {
         if (!Directory.Exists(root))

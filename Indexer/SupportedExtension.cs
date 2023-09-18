@@ -2,7 +2,7 @@
 
 namespace Indexer;
 
-public enum SupportedExtension
+internal enum SupportedExtension
 {
     [StringValue(".txt")] Txt,
     [StringValue(".md")] Md,
@@ -10,7 +10,7 @@ public enum SupportedExtension
 }
 
 [AttributeUsage((AttributeTargets.Field))]
-public sealed class StringValueAttribute : Attribute
+internal sealed class StringValueAttribute : Attribute
 {
     public string Value { get; }
 
@@ -20,7 +20,7 @@ public sealed class StringValueAttribute : Attribute
     }
 }
 
-public static class EnumExtensions
+internal static class EnumExtensions
 {
     public static string StringValue<T>(this T value) where T : Enum
     {
